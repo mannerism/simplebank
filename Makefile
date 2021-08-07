@@ -5,7 +5,7 @@ createdb:
 	docker exec -it postgres12 createdb --username=root --owner=root simple_bank
 
 dropdb:
-	docker exec -it postgres12 dropdb simple_bank
+	docker exec -it postgres12 dropdb simple_bank 
 
 opendb:
 	docker exec -it postgres12 psql -U root simple_bank
@@ -19,4 +19,7 @@ migratedown:
 sqlc: 
 	sqlc generate
 
-.PHONY: postgres createdb dropdb opendb migrateup migratedown sqlc
+test:
+	go test -v -cover ./...
+
+.PHONY: postgres createdb dropdb opendb migrateup migratedown sqlc test
